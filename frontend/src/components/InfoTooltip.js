@@ -32,27 +32,3 @@ function InfoTooltip({ isOpen, onClose, isSuccessReg }) {
 }
 
 export default InfoTooltip;
-
-{
-  /* {isSuccessReg ? (
-        <>
-          <img
-            src={`${successImg}`}
-            className="popup__tooltip_image"
-            alt="Успешная регистрация"
-          />
-          <p className="popup__tooltip_info">Вы успешно зарегистрировались!</p>
-        </>
-      ) : (
-        <>
-          <img
-            src={`${rejectImg}`}
-            className="popup__tooltip_image"
-            alt="Отказ в регистрации"
-          />
-          <p className="popup__tooltip_info">
-            Что-то пошло не так. Попробуйте еще раз!
-          </p>
-        </>
-      )} */
-}

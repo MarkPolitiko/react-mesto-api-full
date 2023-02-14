@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { api } from "../utils/Api";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -5,7 +7,6 @@ import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import { useState, useEffect } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { api } from "../utils/Api";
 import * as auth from "../utils/Auth";
@@ -31,7 +32,7 @@ function App() {
   const [email, setEmail] = useState("");
   const history = useHistory();
 
-  useEffect(() => {
+  function handleCheckToken() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       auth
@@ -41,15 +42,9 @@ function App() {
           setLoggedIn(true);
           history.push("/");
         })
-        .catch((err) => {
-          if (err.status === 400) {
-            console.log("400 — Токен не передан или передан не в том формате");
-          } else if (err.status === 401) {
-            console.log("401 — Переданный токен некорректен");
-          }
-        });
+        .catch((err) => console.log(err));
     }
-  }, [history]);
+  }
 
   useEffect(() => {
     if (loggedIn) {
@@ -60,6 +55,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
+    handleCheckToken();
   }, [loggedIn]);
 
   function handleAddPlaceSubmit(name, link) {
@@ -69,7 +65,7 @@ function App() {
         setCards([card, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log(err));
   }
 
   function handleCardLike(card) {
@@ -173,9 +169,10 @@ function App() {
       .login(data)
       .then((res) => {
         if (res.token) {
+          api.useToken(res.token);
           setLoggedIn(true);
           setEmail(data.email);
-          localStorage.setItem("jwt", res.token);
+          //localStorage.setItem("jwt", res.token);
           history.push("/");
         }
       })

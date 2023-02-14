@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarkPolitiko/express-mesto-gha.git"
+    "url": "git+https://github.com/MarkPolitiko/react-mesto-api-full.git"
   },
   "keywords": [],
   "author": "Mark",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MarkPolitiko/express-mesto-gha/issues"
+    "url": "https://github.com/MarkPolitiko/react-mesto-api-full/issues"
   },
-  "homepage": "https://github.com/MarkPolitiko/express-mesto-gha#readme",
+  "homepage": "https://github.com/MarkPolitiko/react-mesto-api-full#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",

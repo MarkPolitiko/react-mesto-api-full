@@ -1,7 +1,7 @@
 const authInfo = {
-  url: "https://mesto.nomoreparties.co/v1/cohort-52",
+  url: "https://api.mp.students.nomoredomainsclub.ru",
   headers: {
-    Authorization: "bf036392-6320-48e8-bc39-fe0e751cfef6",
+    //Authorization: "bf036392-6320-48e8-bc39-fe0e751cfef6",
     "Content-Type": "application/json",
   },
 };
@@ -10,6 +10,15 @@ export class API {
   constructor({ url, ...headers }) {
     this._url = url;
     this._headers = headers;
+    const jwt = localStorage.getItem("jwt")
+    if(jwt) {
+      this._headers.authorization = "Bearer " + jwt;
+    }
+  }
+
+  useToken(token) {
+    localStorage.setItem("jwt", token);
+    this._headers.authorization = "Bearer " + token;
   }
 
   async _processFetch(track, method = "GET", body) {
