@@ -27,6 +27,10 @@ app.use(requestLogger); // подключаем логгер запросов
 
 app.use(helmet());
 app.use(limiter);
+app.use(cors({
+  origin: 'https://http://mp.students.nomoredomainsclub.ru',
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+}));
 app.use(bodyParser.json());
 
 app.post(
