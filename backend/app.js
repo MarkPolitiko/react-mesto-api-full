@@ -11,6 +11,8 @@ const { loginUser, createUser, unauthorized } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+const { NODE_ENV, MONGO_URL } = process.env;
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -19,7 +21,7 @@ const NotFoundError = require('./errors/notFoundErr');
 const errorHandler = require('./errors/errHandler');
 
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://127.0.0.1:27017/mestodb');
 
 const { PORT = 3000 } = process.env;
 const app = express();
