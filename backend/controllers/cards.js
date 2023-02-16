@@ -7,16 +7,16 @@ const {
   CREATED,
 } = require('../utils/constants');
 
-const cardData = ({
-  likes, link, name, owner, _id,
+/* const cardData = ({
+  likes, link, name, owner, _id
 }) => ({
-  likes, link, name, owner, _id,
-});
+  likes, link, name, owner, _id
+}) */
 
 module.exports.getCards = (req, res, next) => {
-  Card.find({})/* .populate(['owner', 'likes']) */
+  Card.find({}).populate(['owner', 'likes'])
     .then((cards) => {
-      res/* .status(SUCCESS) */.send(/* { cards } */cards.map(cardData));
+      res.status(SUCCESS).send(cards);
     })
     .catch((err) => next(err));
 };

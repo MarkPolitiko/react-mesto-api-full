@@ -31,6 +31,18 @@ function App() {
   const [email, setEmail] = useState("");
   const history = useHistory();
 
+  useEffect(() => {
+    if (loggedIn) {
+      Promise.all([api.getProfileInfo(), api.getInitialCards()])
+        .then(([userData, cards]) => {
+          setCurrentUser(userData);
+          setCards(cards);
+        })
+        .catch((err) => console.log(err));
+    }
+    handleCheckToken();
+  }, [loggedIn]);
+
   function handleCheckToken() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
@@ -44,18 +56,6 @@ function App() {
         .catch((err) => console.log(err));
     }
   }
-
-  useEffect(() => {
-    if (loggedIn) {
-      Promise.all([api.getProfileInfo(), api.getInitialCards()])
-        .then(([userData, cards]) => {
-          setCurrentUser(userData);
-          setCards(cards);
-        })
-        .catch((err) => console.log(err));
-    }
-    handleCheckToken();
-  }, [loggedIn]);
 
   function handleAddPlaceSubmit(name, link) {
     api
