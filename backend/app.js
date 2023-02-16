@@ -20,20 +20,21 @@ const limiter = rateLimit({
 const NotFoundError = require('./errors/notFoundErr');
 const errorHandler = require('./errors/errHandler');
 
-mongoose.set('strictQuery', true);
-mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://127.0.0.1:27017/mestodb');
-
 const { PORT = 3000 } = process.env;
 const app = express();
+
+mongoose.set('strictQuery', true);
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger); // подключаем логгер запросов
 
 app.use(helmet());
 app.use(limiter);
-app.use(cors({
-  origin: 'https://mp.students.nomoredomainsclub.ru',
-  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
-}));
+app.use(cors());
+// app.use(cors({
+//   origin: 'https://mp.students.nomoredomainsclub.ru',
+//   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+// }));
 app.use(bodyParser.json());
 
 app.get('/crash-test', () => {

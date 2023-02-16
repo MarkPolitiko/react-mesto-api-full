@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const User = require('../models/user');
+
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const BadRequestError = require('../errors/badRequestErr');
 const NotFoundError = require('../errors/notFoundErr');
 const UnauthorizedError = require('../errors/unauthorizedErr');
 const RequestConflictError = require('../errors/requestConflictErr');
-const User = require('../models/user');
-
-const { NODE_ENV, JWT_SECRET } = process.env;
 
 const {
   SUCCESS,
@@ -143,7 +144,6 @@ module.exports.loginUser = (req, res, next) => {
       );
       res.cookie('jwt', token, {
         httpOnly: true,
-        sameSite: true,
         maxAge: 3600000 * 24 * 7,
       });
       res.send({ token });
