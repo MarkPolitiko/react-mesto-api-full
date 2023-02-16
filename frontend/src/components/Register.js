@@ -48,7 +48,7 @@ function Register({ onRegister }) {
             required
           />
           <button className="auth__button">Зарегистрироваться</button>
-          <Link to="/signin" className="auth__signup-ask">Уже зарегистрированы? Войти</Link>
+          <Link to="/sign-in" className="auth__signup-ask">Уже зарегистрированы? Войти</Link>
         </form>
       </div>
     </>

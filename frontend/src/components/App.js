@@ -151,7 +151,7 @@ function App() {
       .then(() => {
         setIsRegistered(true);
         setIsInfoTooltipOpened(true);
-        history.push("/signin");
+        history.push("/sign-in");
       })
       .catch((err) => {
         if (err.status === 400) {
@@ -190,7 +190,7 @@ function App() {
   function handleLogOut() {
     setLoggedIn(false);
     localStorage.removeItem("jwt");
-    history.push("/signin");
+    history.push("/sign-in");
   }
 
   return (
@@ -214,12 +214,12 @@ function App() {
               logOut={handleLogOut}
             ></ProtectedRoute>
             <Route exact path="/">
-              {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
+              {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
             </Route>
-            <Route path="/signup">
+            <Route path="/sign-up">
               <Register onRegister={handleRegister} />
             </Route>
-            <Route path="/signin">
+            <Route path="/sign-in">
               <Login onLogin={handleLogin} />
             </Route>
           </Switch>
