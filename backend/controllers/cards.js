@@ -26,7 +26,7 @@ module.exports.createCard = (req, res, next) => {
 
   Card.create({ name, link, owner: req.user._id })
     .then((card) => card.populate('owner', 'likes'))
-    .then((card) => res.status(CREATED).send({ card }))
+    .then((card) => res.status(CREATED).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Передан некорректный запрос'));
@@ -45,7 +45,7 @@ module.exports.deleteCardById = (req, res, next) => {
       if (!card.owner.equals(req.user._id)) {
         throw new ForbiddenError('Отсутствуют права на удаление этой карточки');
       }
-      res.status(SUCCESS).send({ card });
+      res.status(SUCCESS).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -66,7 +66,7 @@ module.exports.likeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Передан несуществующий id карточки');
       }
-      res.status(SUCCESS).send({ card });
+      res.status(SUCCESS).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -87,7 +87,7 @@ module.exports.dislikeCard = (req, res, next) => {
       if (!card) {
         throw new NotFoundError('Передан несуществующий id карточки');
       }
-      res.status(SUCCESS).send({ card });
+      res.status(SUCCESS).send(card);
     })
     .catch((err) => {
       if (err.name === 'CastError') {

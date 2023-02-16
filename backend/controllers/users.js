@@ -59,7 +59,7 @@ module.exports.getCurrentUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь с указанным id не найден');
       }
-      res.status(SUCCESS).send({ user });
+      res.status(SUCCESS).send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -76,7 +76,7 @@ module.exports.getUserById = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Пользователь с указанным id не найден');
       }
-      res.status(SUCCESS).send({ user });
+      res.status(SUCCESS).send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -94,7 +94,7 @@ module.exports.updateUser = (req, res, next) => {
     { new: true, runValidators: true },
   )
     .then((user) => {
-      res.status(SUCCESS).send({ user });
+      res.status(SUCCESS).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -114,7 +114,7 @@ module.exports.updateAvatar = (req, res, next) => {
     { new: true, runValidators: true },
   )
     .then((user) => {
-      res.status(SUCCESS).send({ user });
+      res.status(SUCCESS).send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
