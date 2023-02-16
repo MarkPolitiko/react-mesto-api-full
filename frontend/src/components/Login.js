@@ -56,7 +56,7 @@ function Login(props) {
             required 
           />
           <button className="auth__button">Войти</button>
-{          <Link to="/sign-up" className="auth__signup-ask">
+{          <Link to="/signup" className="auth__signup-ask">
             Нет учетной записи? Зарегистрироваться
           </Link>}
         </form>
