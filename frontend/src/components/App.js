@@ -37,7 +37,7 @@ function App() {
       auth
         .checkToken(jwt)
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setLoggedIn(true);
           history.push("/");
         })

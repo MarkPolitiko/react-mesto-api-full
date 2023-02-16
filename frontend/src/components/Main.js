@@ -50,7 +50,7 @@ function Main({
       </section>
 
       <section className="elements">
-        {cards.map((card) => (
+        {cards.map(card => (
           <Card
             card={card}
             key={card._id}
