@@ -7,14 +7,8 @@ const {
   CREATED,
 } = require('../utils/constants');
 
-/* const cardData = ({
-  likes, link, name, owner, _id
-}) => ({
-  likes, link, name, owner, _id
-}) */
-
 module.exports.getCards = (req, res, next) => {
-  Card.find({}).populate(['owner', 'likes'])
+  Card.find({}).populate(['owner', 'likes']).sort({ createdAt: -1 })
     .then((cards) => {
       res.status(SUCCESS).send(cards);
     })
