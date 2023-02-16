@@ -7,7 +7,7 @@ const authInfo = {
 };
 
 export class API {
-  constructor({ url, ...headers }) {
+  constructor({ url, headers }) {
     this._url = url;
     this._headers = headers;
     const jwt = localStorage.getItem("jwt")
@@ -22,7 +22,7 @@ export class API {
   }
 
   async _processFetch(track, method = "GET", body) {
-    const params = { ...this._headers, method };
+    const params = { headers: this._headers, method };
     if (body) {
       if (typeof body === "string") {
         params.body = body;
