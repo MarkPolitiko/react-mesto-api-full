@@ -49,7 +49,7 @@ function Main({
         </section>
 
         <section className="elements">
-          {cards.data.map((card) => (
+          {cards.data.map(([card]) => (
             <Card
               key={card._id}
               card={card}
