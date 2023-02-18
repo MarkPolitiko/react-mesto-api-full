@@ -13,8 +13,6 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { NODE_ENV, MONGO_URL } = process.env;
 
-console.log(process.env);
-
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
@@ -27,6 +25,8 @@ const app = express();
 
 mongoose.set('strictQuery', true);
 mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : 'mongodb://127.0.0.1:27017/mestodb');
+
+console.log(process.env.NODE_ENV);
 
 app.use(requestLogger); // подключаем логгер запросов
 
