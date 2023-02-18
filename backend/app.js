@@ -1,8 +1,4 @@
 require('dotenv').config();
-
-console.log(process.env.NODE_ENV);
-console.log(process.env.JWT_SECRET);
-
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
@@ -16,6 +12,9 @@ const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { NODE_ENV, MONGO_URL } = process.env;
+
+console.log(process.env.NODE_ENV);
+console.log(process.env.JWT_SECRET);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
