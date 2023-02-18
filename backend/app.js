@@ -1,4 +1,8 @@
 require('dotenv').config();
+
+console.log(process.env.NODE_ENV);
+console.log(process.env.JWT_SECRET);
+
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
