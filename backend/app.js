@@ -13,8 +13,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { NODE_ENV, MONGO_URL } = process.env;
 
-console.log(process.env.NODE_ENV);
-console.log(process.env.JWT_SECRET);
+console.log(process.env);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
